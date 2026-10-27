@@ -1,0 +1,27 @@
+---
+title: "penguin_analysis"
+---
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+```{r}
+install.packages(c("tidyverse", "palmerpenguins"))
+library(tidyverse)
+library(palmerpenguins)
+
+penguin_summary <- penguins |>
+  drop_na(bill_length_mm, body_mass_g) |>
+  group_by(species, island) |>
+  summarize(
+    n = n(),
+    mean_bill_length = mean(bill_length_mm),
+    mean_body_mass   = mean(body_mass_g),
+    sd_body_mass     = sd(body_mass_g),
+    .groups = "drop"
+  )
+
+penguin_summary
+
+```
