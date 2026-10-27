@@ -24,4 +24,12 @@ penguin_summary <- penguins |>
 
 penguin_summary
 
+penguins |>
+  group_by(species) |>
+  summarize(mean_mass = mean(body_mass_g, na.rm = TRUE)) |>
+  ggplot(aes(species, mean_mass, fill = species)) +
+  geom_col() +
+  labs(title = "Mean Body Mass by Penguin Species", y = "Body mass (g)") +
+  theme_minimal()
+
 ```
